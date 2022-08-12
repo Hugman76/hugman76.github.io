@@ -20,7 +20,9 @@ export default observer(function Home() {
             <h1 className="bg-gradient-to-br from-blue-400 to-green-400 bg-clip-text text-6xl font-bold uppercase text-transparent">
                 Craftle
             </h1>
-            <h2 className="bg-gradient-to-br from-red-400 to-yellow-400 bg-clip-text text-3xl font-bold uppercase text-transparent">Spoiler: it's "{store.word}"</h2>
+            <h2 className="bg-gradient-to-br from-red-400 to-yellow-400 mb-2 bg-clip-text text-3xl font-bold text-transparent">
+                Guess the Minecraft feature!
+            </h2>
             {store.guesses.map((_, i) => (
                 <Guess
                     key={i}
