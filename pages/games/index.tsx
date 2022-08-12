@@ -5,7 +5,7 @@ import Image from 'next/image'
 const Home: NextPage = () => {
   return (
       <>
-          Hello World!
+          <button className="rounded-full"><a href="/games/craftle">Craftle</a></button>
       </>
   )
 }
