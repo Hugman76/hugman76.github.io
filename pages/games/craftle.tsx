@@ -16,13 +16,14 @@ export default observer(function Home() {
         }
     }, [])
     return (
-        <div className="flex h-screen w-screen flex-col items-center justify-center bg-gray-600">
+        <div className="flex h-screen w-screen flex-col items-center justify-center bg-white dark:bg-slate-800">
             <h1 className="bg-gradient-to-br from-blue-400 to-green-400 bg-clip-text text-6xl font-bold uppercase text-transparent">
                 Craftle
             </h1>
             <h2 className="bg-gradient-to-br from-red-400 to-yellow-400 mb-2 bg-clip-text text-3xl font-bold text-transparent">
                 Guess the Minecraft feature!
             </h2>
+            <div className="m-3">
             {store.guesses.map((_, i) => (
                 <Guess
                     key={i}
@@ -31,6 +32,7 @@ export default observer(function Home() {
                     isGuessed={i < store.currentGuess}
                 />
             ))}
+            </div>
             {store.won && <h1>You won!</h1>}
             {store.lost && <h1>You lost!</h1>}
             {(store.won || store.lost) && (

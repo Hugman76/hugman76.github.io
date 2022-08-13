@@ -15,7 +15,7 @@ function Keyboard({ store }) {
                                     ? 'bg-gray-400'
                                     : 'bg-gray-200'
                         return (
-                            <button className={`rounded-lg m-px flex h-10 w-10 items-center justify-center uppercase ${bgColor}`}>
+                            <button className={`font-bold rounded-lg m-px flex h-10 w-10 items-center justify-center uppercase ${bgColor}`}>
                                 {char}
                             </button>
                         )
