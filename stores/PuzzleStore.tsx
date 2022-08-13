@@ -1,4 +1,5 @@
 import words from '../data/words.json'
+import PuzzleStore from "./PuzzleStore";
 
 export default {
     word: '',
@@ -23,26 +24,29 @@ export default {
             this.word
                 .split('')
                 // if any guesses include this letter in this position/index
-                .filter((letter, i) => {
-                    return this.guesses
-                        .slice(0, this.currentGuess)
-                        .map((word) => word[i])
-                        .includes(letter)
-                })
+                .filter(this.isCorrectGuess)
         )
+    },
+    isCorrectGuess(letter, i) {
+        return this.guesses
+            .slice(0, this.currentGuess)
+            .map((word) => word[i])
+            .includes(letter)
     },
     get inexactGuesses() {
         return this.word
             .split('')
-            .filter((letter) => this.allGuesses.includes(letter))
+            .filter(this.isInexactGuess)
+    },
+    isInexactGuess(letter) {
+        return this.allGuesses.includes(letter)
     },
     submitGuess() {
-        if(this.word.length == this.guesses[this.currentGuess].length) {
+        if(words.includes(this.guesses[this.currentGuess])) {
             this.currentGuess++
         }
     },
     handleKeydown(e) {
-        console.log(e.key)
         if (this.won || this.lost) {
             return
         }
@@ -58,8 +62,7 @@ export default {
             return
         }
         if (this.guesses[this.currentGuess].length < this.word.length && e.key.match(/^[A-z]$/)) {
-            this.guesses[this.currentGuess] =
-                this.guesses[this.currentGuess] + e.key.toLowerCase()
+            this.guesses[this.currentGuess] = this.guesses[this.currentGuess] + e.key.toLowerCase()
         }
     },
 }

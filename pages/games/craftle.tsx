@@ -2,8 +2,8 @@ import {observer, useLocalObservable} from "mobx-react-lite";
 import {useEffect} from "react";
 
 import Guess from '../../components/wordle/Guess'
-import Keyboard from "../../components/wordle/Keyboard";
 import PuzzleStore from '../../stores/PuzzleStore'
+import Keyboard from "../../components/wordle/Keyboard";
 
 export default observer(function Home() {
     const store = useLocalObservable(() => PuzzleStore)
@@ -35,6 +35,9 @@ export default observer(function Home() {
             {store.lost && <h1>You lost!</h1>}
             {(store.won || store.lost) && (
                 <button onClick={store.init}>Play Again</button>
+            )}
+            {!store.won && !store.lost && (
+                <Keyboard store={store} />
             )}
         </div>
     )
