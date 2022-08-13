@@ -9,6 +9,7 @@ export default observer(function Home() {
     const store = useLocalObservable(() => PuzzleStore)
     useEffect(() => {
         store.init()
+        console.log(store.word)
         window.addEventListener('keydown', store.handleKeydown)
 
         return () => {
@@ -16,7 +17,7 @@ export default observer(function Home() {
         }
     }, [])
     return (
-        <div className="flex h-screen w-screen flex-col items-center justify-center bg-white dark:bg-slate-800">
+        <div className="flex h-screen w-full flex-col items-center justify-center bg-white dark:bg-slate-800">
             <h1 className="bg-gradient-to-br from-blue-400 to-green-400 bg-clip-text text-6xl font-bold uppercase text-transparent">
                 Craftle
             </h1>
