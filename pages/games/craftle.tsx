@@ -21,7 +21,7 @@ export default observer(function Home() {
                 Craftle
             </h1>
             <h2 className="bg-gradient-to-br from-red-400 to-yellow-400 mb-2 bg-clip-text text-3xl font-bold text-transparent">
-                Guess the Minecraft feature!
+                Guess the Minecraft-related word!
             </h2>
             <div className="m-3">
             {store.guesses.map((_, i) => (
@@ -33,13 +33,18 @@ export default observer(function Home() {
                 />
             ))}
             </div>
-            {store.won && <h1>You won!</h1>}
-            {store.lost && <h1>You lost!</h1>}
-            {(store.won || store.lost) && (
-                <button onClick={store.init}>Play Again</button>
-            )}
             {!store.won && !store.lost && (
                 <Keyboard store={store} />
+            )}
+            {store.won && <h1 className="bg-gradient-to-br from-green-400 to-green-300 mb-2 bg-clip-text text-3xl font-bold text-transparent">You won!</h1>}
+            {store.lost && (
+                <>
+                    <h1 className="bg-gradient-to-br from-red-400 to-red-300 mb-2 bg-clip-text text-3xl font-bold text-transparent">You lost!</h1>
+                    <h2 className="bg-gradient-to-br from-gray-400 to-gray-200 mb-2 bg-clip-text text-3xl font-bold text-transparent">The word was "{store.word}".</h2>
+                </>
+            )}
+            {(store.won || store.lost) && (
+                <button className="rounded-full bg-orange-400 py-2 px-4 font-bold" onClick={store.init}>Play Again</button>
             )}
         </div>
     )
