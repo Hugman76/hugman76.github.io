@@ -9,7 +9,6 @@ export default observer(function Home() {
     const store = useLocalObservable(() => PuzzleStore)
     useEffect(() => {
         store.init()
-        console.log(store.word)
         window.addEventListener('keydown', store.handleKeydown)
 
         return () => {
