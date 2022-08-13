@@ -1,9 +1,8 @@
 import words from '../data/words.json'
-import PuzzleStore from "./PuzzleStore";
 
 export default {
     word: '',
-    guesses: [],
+    guesses: [] as string[],
     currentGuess: 0,
     init() {
         this.word = words[Math.trunc(Math.random() * words.length)]
@@ -42,7 +41,9 @@ export default {
         return this.allGuesses.includes(letter)
     },
     submitGuess() {
-        if(words.includes(this.guesses[this.currentGuess]) && this.guesses[this.currentGuess].lenght === this.word.length) {
+        var guess = this.guesses[this.currentGuess]
+        guess = String (guess);
+        if(words.includes(guess) && guess.length == this.word.length) {
             this.currentGuess++
         }
     },
@@ -54,6 +55,8 @@ export default {
         if (e.key === 'Enter') {
             return this.submitGuess()
         }
+
+
         if (e.key === 'Backspace') {
             this.guesses[this.currentGuess] = this.guesses[this.currentGuess].slice(
                 0,
@@ -61,8 +64,9 @@ export default {
             )
             return
         }
+
         if (this.guesses[this.currentGuess].length < this.word.length && e.key.match(/^[A-z]$/)) {
             this.guesses[this.currentGuess] = this.guesses[this.currentGuess] + e.key.toLowerCase()
         }
-    },
+    }
 }
