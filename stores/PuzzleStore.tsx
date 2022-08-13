@@ -42,7 +42,7 @@ export default {
         return this.allGuesses.includes(letter)
     },
     submitGuess() {
-        if(words.includes(this.guesses[this.currentGuess])) {
+        if(words.includes(this.guesses[this.currentGuess]) && this.guesses[this.currentGuess].lenght === this.word.length) {
             this.currentGuess++
         }
     },
