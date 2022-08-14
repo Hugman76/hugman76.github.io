@@ -12,7 +12,7 @@ export default function Guess({isGuessed, guess, word}) {
 
                 const border = !isGuessed ? 'dark:border-2 dark:border-gray-400' : ''
                 return (
-                    <div className={`flex rounded-md ${border} h-16 w-16 items-center justify-center font-bold text-3xl uppercase text-white ${bgColor}`}>
+                    <div className={`flex rounded-md ${border} h-16 aspect-square items-center justify-center font-bold text-3xl uppercase text-white ${bgColor}`}>
                         {guess[i]}
                     </div>
                 )

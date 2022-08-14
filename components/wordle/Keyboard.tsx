@@ -1,11 +1,15 @@
 import {observer} from 'mobx-react-lite'
 
 function Keyboard({ store }) {
-    const qwerty = ['qwertyuiop', 'asdfghjkl', '+zxcvbnm<']
+    const qwerty = ['qwertyuiop', ' asdfghjkl ', '+zxcvbnm<']
     return (
-        <div>
-            {qwerty.map((row) => (
-                <div className="flex justify-center">
+        <div className="w-full max-w-lg">
+            {qwerty.map((row) => {
+                let cols = row.length
+                if(row.match(/\+/)) cols++
+                if(row.match(/</)) cols++
+                cols = cols + Math.trunc((row.match(/ /) || []).length / 2);
+                return <div className={`grid grid-cols-${cols} gap-1`}>
                     {row.split('').map((char) => {
                         const bgColor = store.exactGuesses.includes(char)
                             ? 'bg-green-500 hover:bg-green-600'
@@ -15,12 +19,13 @@ function Keyboard({ store }) {
                                     ? 'bg-gray-400 hover:bg-gray-500'
                                     : 'bg-gray-200 hover:bg-gray-300'
 
-                        const width = ('+' === char || '<' === char) ? 'w-20' : 'w-11'
+                        if(char === ' ') return <div></div>
                         const text = '+' === char ? 'Enter' : '<' === char ? '<-' : char
                         const input = '+' === char ? 'Enter' : '<' === char ? 'Backspace' : char
+                        const colspan = ('+' === char || '<' === char) ? 'col-span-2': ''
                         return (
                             <button onClick={() => store.enterKey(input)}
-                                    className={`flex h-16 ${width} rounded-lg m-0.5 items-center justify-center
+                                    className={`h-16 w-full ${colspan} rounded-lg m-0.5 items-center justify-center
                                     text-lg font-bold uppercase
                                     ${bgColor}
                                     active:translate-y-px transition-transform
@@ -30,7 +35,7 @@ function Keyboard({ store }) {
                         )
                     })}
                 </div>
-            ))}
+            })}
         </div>
     )
 }
