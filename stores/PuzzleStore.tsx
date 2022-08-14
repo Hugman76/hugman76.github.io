@@ -13,7 +13,7 @@ export default {
         return this.guesses[this.currentGuess - 1] === this.word
     },
     get lost() {
-        return this.currentGuess === 6
+        return !this.won && this.currentGuess === 6
     },
     get allGuesses() {
         return this.guesses.slice(0, this.currentGuess).join('').split('')
@@ -41,23 +41,22 @@ export default {
         return this.allGuesses.includes(letter)
     },
     submitGuess() {
-        var guess = this.guesses[this.currentGuess]
-        guess = String (guess);
-        if(words.includes(guess) && guess.length == this.word.length) {
+        let guess = String (this.guesses[this.currentGuess]);
+        if(words.includes(guess) && guess.length === this.word.length) {
             this.currentGuess++
         }
     },
-    handleKeydown(e) {
+    enterKey(key: string) {
         if (this.won || this.lost) {
             return
         }
 
-        if (e.key === 'Enter') {
+        if (key === 'Enter') {
             return this.submitGuess()
         }
 
 
-        if (e.key === 'Backspace') {
+        if (key === 'Backspace') {
             this.guesses[this.currentGuess] = this.guesses[this.currentGuess].slice(
                 0,
                 this.guesses[this.currentGuess].length - 1
@@ -65,8 +64,11 @@ export default {
             return
         }
 
-        if (this.guesses[this.currentGuess].length < this.word.length && e.key.match(/^[A-z]$/)) {
-            this.guesses[this.currentGuess] = this.guesses[this.currentGuess] + e.key.toLowerCase()
+        if (this.guesses[this.currentGuess].length < this.word.length && key.match(/^[A-z]$/)) {
+            this.guesses[this.currentGuess] = this.guesses[this.currentGuess] + key.toLowerCase()
         }
+    },
+    handleKeydown(e) {
+        this.enterKey(e.key)
     }
 }

@@ -9,6 +9,7 @@ export default observer(function Home() {
     const store = useLocalObservable(() => PuzzleStore)
     useEffect(() => {
         store.init()
+        console.log(store.word)
         window.addEventListener('keydown', store.handleKeydown)
 
         return () => {
@@ -17,10 +18,10 @@ export default observer(function Home() {
     }, [])
     return (
         <div className="flex h-screen w-full flex-col items-center justify-center bg-white dark:bg-slate-800">
-            <h1 className="bg-gradient-to-br from-blue-400 to-green-400 bg-clip-text text-6xl font-bold uppercase text-transparent">
+            <h1 className="bg-gradient-to-br from-red-400 to-yellow-400 bg-clip-text text-6xl font-bold text-transparent uppercase mb-2">
                 Craftle
             </h1>
-            <h2 className="bg-gradient-to-br from-red-400 to-yellow-400 mb-2 bg-clip-text text-3xl font-bold text-transparent">
+            <h2 className="text-3xl font-bold text-white mb-2">
                 Guess the Minecraft-related word!
             </h2>
             <div className="m-3">
@@ -36,7 +37,7 @@ export default observer(function Home() {
             {!store.won && !store.lost && (
                 <Keyboard store={store} />
             )}
-            {store.won && <h1 className="bg-gradient-to-br from-green-400 to-green-300 mb-2 bg-clip-text text-3xl font-bold text-transparent">You won!</h1>}
+            {store.won && <h1 className="bg-gradient-to-br from-green-400 to-green-300 mb-2 bg-clip-text text-3xl font-bold text-transparent animate-bounce">You won!</h1>}
             {store.lost && (
                 <>
                     <h1 className="bg-gradient-to-br from-red-400 to-red-300 mb-2 bg-clip-text text-3xl font-bold text-transparent">You lost!</h1>
@@ -44,7 +45,7 @@ export default observer(function Home() {
                 </>
             )}
             {(store.won || store.lost) && (
-                <button className="rounded-full bg-orange-400 py-2 px-4 font-bold" onClick={store.init}>Play Again</button>
+                <button className="rounded-full bg-sky-400 text-white py-2 px-4 font-bold" onClick={store.init}>Play Again</button>
             )}
         </div>
     )
