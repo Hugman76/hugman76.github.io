@@ -85,7 +85,7 @@ export default {
             }
             guessEmojis += letters[i].className.match(/ correct/) ? '🟩' : letters[i].className.match(/ partial/) ? '🟨' : '⬛'
         }
-        return `Craftle #${number} ${this.lost ? '💀' : this.currentGuess}/${this.guesses.length}\n${guessEmojis}\n\nhttps://hugman76.github.io/games/craftle/`
+        return `Craftle #${number} ${this.lost ? '💀' : this.currentGuess}/${this.guesses.length}\n${guessEmojis}\n\nhttps://hugman76.github.io/games/craftle`
     },
     copy() {
         let shareButton = document.getElementById("copy-button")
