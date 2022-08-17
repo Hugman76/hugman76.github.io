@@ -2,14 +2,13 @@ import {observer, useLocalObservable} from "mobx-react-lite";
 import {useEffect} from "react";
 
 import Guess from '../../components/wordle/Guess'
-import PuzzleStore from '../../stores/PuzzleStore'
+import PuzzleStore from '../../stores/WordleStore'
 import Keyboard from "../../components/wordle/Keyboard";
 
 export default observer(function Home() {
     const store = useLocalObservable(() => PuzzleStore)
     useEffect(() => {
         store.init()
-        console.log(store.word)
         window.addEventListener('keydown', store.handleKeydown)
 
         return () => {
@@ -47,16 +46,25 @@ export default observer(function Home() {
                             You lost!
                         </h1>
                         <h2 className="bg-gradient-to-br from-gray-400 to-gray-200 mb-2 bg-clip-text text-3xl font-bold text-transparent">
-                            The word was "{store.word}".
+                            The word was '{store.word}'.
                         </h2>
                     </>
                 )}
                 {(store.won || store.lost) && (
-                    <button
-                        className="animate-pulse hover:animate-none rounded-full bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white py-2 px-4 font-bold"
-                        onClick={store.init}>
-                        Play Again
-                    </button>
+                    <span className="inline mb-2">
+                        <button
+                            id="copy-button"
+                            className="rounded-md bg-gradient-to-r from-pink-500 to-yellow-500 hover:bg-green-600 text-white py-2 px-4 mr-1 font-bold"
+                            onClick={store.copy}>
+                            Copy Result
+                        </button>
+                        {/* <button
+                            id="tweet-button"
+                            className="rounded-md bg-sky-400 hover:bg-sky-500 text-white py-2 px-4 ml-1 font-bold"
+                            onClick={store.tweet}>
+                            Tweet
+                        </button> */}
+                    </span>
                 )}
             </div>
         </div>

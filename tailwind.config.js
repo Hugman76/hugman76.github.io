@@ -7,7 +7,8 @@ module.exports = {
   safelist: [
     {
       "pattern": /^grid-cols-/
-    }
+    },
+    "animate-pulse"
   ],
   theme: {
     extend: {},
