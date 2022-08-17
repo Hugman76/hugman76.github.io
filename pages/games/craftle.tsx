@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import Guess from '../../components/wordle/Guess'
 import PuzzleStore from '../../stores/WordleStore'
 import Keyboard from "../../components/wordle/Keyboard";
+import Head from "next/head";
 
 export default observer(function Home() {
     const store = useLocalObservable(() => PuzzleStore)
@@ -17,6 +18,9 @@ export default observer(function Home() {
     }, [])
     return (
         <div className="h-full w-full bg-white dark:bg-slate-800 bg-scroll">
+            <Head>
+                <title>Craftle</title>
+            </Head>
             <div className="flex py-8 flex-col items-center justify-center">
                 <h1 className="bg-gradient-to-br from-red-400 to-yellow-400 bg-clip-text text-6xl font-bold text-transparent uppercase mb-2">
                     Craftle
