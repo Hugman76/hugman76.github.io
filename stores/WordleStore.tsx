@@ -1,13 +1,13 @@
 import config from '../data/craftle.json'
 
-const FIRST_DAY = new Date();
+const FIRST_DAY = new Date("08/17/2022");
 
 export default {
     word: '',
     guesses: [] as string[],
     currentGuess: 0,
     init() {
-        const now = new Date(2022, 8, 17);
+        const now = new Date();
         this.word = config.pool[(now.getDay() * now.getMonth() * now.getFullYear()) % config.pool.length]
         this.guesses.replace(new Array(6).fill(''))
         this.currentGuess = 0
