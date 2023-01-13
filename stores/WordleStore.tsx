@@ -8,7 +8,12 @@ export default {
     currentGuess: 0,
     init() {
         const now = new Date();
-        this.word = config.pool[(now.getDay() * now.getMonth() * now.getFullYear()) % config.pool.length]
+        const daysSinceEpoch = Math.floor((now.getTime() - Date.UTC(1970, 0, 1)) / 86400000);
+        const a = 1103515245;
+        const c = 12345;
+        const m = Math.pow(2, 31);
+        const seed = (a * daysSinceEpoch + c) % m;
+        this.word = config.pool[seed % config.pool.length];
         this.guesses.replace(new Array(6).fill(''))
         this.currentGuess = 0
     },

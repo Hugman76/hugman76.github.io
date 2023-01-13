@@ -488,7 +488,9 @@
     "wool",
     "world",
     "zoglin",
-    "zombie"
+    "zombie",
+    "camel",
+    "sniffer"
   ],
   "other_words": [
     "aerie",
@@ -620,6 +622,10 @@
     "xilefian",
     "xisuma",
     "youtube",
-    "zephirr"
+    "zephirr",
+    "bot",
+    "promenade",
+    "culinaire",
+    "artisanat"
   ]
 }
