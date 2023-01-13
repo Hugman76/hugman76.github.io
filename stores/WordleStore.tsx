@@ -4,6 +4,7 @@ const FIRST_DAY = new Date("08/17/2022");
 
 export default {
     word: '',
+    number: 0,
     guesses: [] as string[],
     currentGuess: 0,
     init() {
@@ -15,6 +16,7 @@ export default {
         const seed = (a * daysSinceEpoch + c) % m;
         this.word = config.pool[seed % config.pool.length];
         this.guesses.replace(new Array(6).fill(''))
+        this.number = Math.ceil(Math.abs(new Date().getTime() - FIRST_DAY.getTime()) / (1000 * 3600 * 24))
         this.currentGuess = 0
     },
     get won() {
@@ -80,7 +82,6 @@ export default {
         this.enterKey(e.key)
     },
     get result() {
-        let number = Math.ceil(Math.abs(new Date().getTime() - FIRST_DAY.getTime()) / (1000 * 3600 * 24))
         let guessEmojis = ''
         const letters = document.getElementsByClassName('letter')
         for (let i = 0; i < letters.length; i++) {
@@ -90,7 +91,7 @@ export default {
             }
             guessEmojis += letters[i].className.match(/ correct/) ? '🟩' : letters[i].className.match(/ partial/) ? '🟨' : '⬛'
         }
-        return `Craftle #${number} ${this.lost ? '💀' : this.currentGuess}/${this.guesses.length}\n${guessEmojis}\n\nhttps://hugman76.github.io/games/craftle`
+        return `Craftle #${this.number} ${this.lost ? '💀' : this.currentGuess}/${this.guesses.length}\n${guessEmojis}\n\nhttps://hugman76.github.io/games/craftle`
     },
     copy() {
         let shareButton = document.getElementById("copy-button")

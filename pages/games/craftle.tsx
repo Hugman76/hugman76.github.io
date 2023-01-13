@@ -19,11 +19,11 @@ export default observer(function Home() {
     return (
         <div className="h-full w-full bg-white dark:bg-slate-800 bg-scroll">
             <Head>
-                <title>Craftle</title>
+                <title>{store.number ? `Craftle #${store.number}` : 'Craftle'}</title>
             </Head>
             <div className="flex py-8 flex-col items-center justify-center">
                 <h1 className="bg-gradient-to-br from-red-400 to-yellow-400 bg-clip-text text-6xl font-bold text-transparent uppercase mb-2">
-                    Craftle
+                    Craftle #{store.number}
                 </h1>
                 <h2 className="text-3xl font-bold text-center dark:text-white mb-2">
                     Guess the Minecraft-related word!
