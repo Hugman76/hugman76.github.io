@@ -1,0 +1,4 @@
+baseURL = 'https://hugo-landrin.fr'
+languageCode = 'fr-fr'
+title = 'Hugo Landrin'
+theme = 'ananke'
