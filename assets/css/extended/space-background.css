@@ -1,0 +1,49 @@
+[data-theme="dark"] body,
+[data-theme="dark"] body.list {
+    background-color: var(--theme);
+    background-image:
+        radial-gradient(circle at 50% 50%, rgba(20, 0, 60, 0.4) 0%, transparent 70%);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+    100% { opacity: 0.3; transform: scale(0.8); }
+}
+
+.star {
+    position: fixed;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    display: none;
+    opacity: 0.3;
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.4); /* Bloom effect */
+}
+
+.nebula {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -2;
+    opacity: 0.3;
+    transition: all 20s ease-in-out;
+    pointer-events: none;
+    display: none;
+}
+
+[data-theme="dark"] .nebula {
+    display: block;
+}
+
+[data-theme="dark"] .star {
+    display: block;
+    animation-name: twinkle;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
