@@ -1,0 +1,9 @@
+baseURL: 'https://hugo-landrin.fr'
+languageCode: 'fr-fr'
+title: 'Hugo Landrin'
+enableEmoji: true
+
+params:
+  env: 'production'
+  author: 'Hugo Landrin'
+  defaultTheme: 'auto'

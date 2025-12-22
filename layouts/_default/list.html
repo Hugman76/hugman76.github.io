@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="post-list">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+
+    {{ range where .Pages "Draft" "!=" true }}
+    <article class="post-entry">
+        <header class="entry-header">
+            <h2>{{ .Title }}</h2>
+        </header>
+        <div class="entry-content">
+            <p>{{ .Description }}</p>
+        </div>
+        <footer class="entry-footer">
+            <span title='{{ .Date.Format "2006-01-02 15:04:05" }}'>
+                {{ .Date.Format "January 2, 2006" }}
+            </span>
+        </footer>
+        <a class="entry-link" aria-label="post link to {{ .Title }}" href="{{ .Permalink }}"></a>
+    </article>
+    {{ end }}
+</div>
+{{ end }}
+

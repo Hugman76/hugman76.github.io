@@ -4,8 +4,6 @@ title: "Bruit de Perlin"
 date: "2023-09-29"
 description: "Qu'est-ce que le bruit de Perlin, et à quoi sert-il ?"
 tags: ["maths"]
-ShowToc: true
-ShowBreadCrumbs: false
 draft: true
 ---
 ## Présentation

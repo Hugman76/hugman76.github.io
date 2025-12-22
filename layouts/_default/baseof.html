@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+    {{ $space := resources.Get "css/space-background.css" }}
+    {{ $custom := resources.Get "css/custom.css" }}
+
+    {{ if $space }}
+    <link rel="stylesheet" href="{{ $space.RelPermalink }}">
+    {{ end }}
+    {{ if $custom }}
+    <link rel="stylesheet" href="{{ $custom.RelPermalink }}">
+    {{ end }}
+</head>
+<body>
+    {{ partial "header.html" . }}
+
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    {{ partial "footer.html" . }}
+
+    {{ $js := resources.Get "js/background.js" }}
+    {{ if $js }}
+    <script src="{{ $js.RelPermalink }}"></script>
+    {{ end }}
+</body>
+</html>
+
